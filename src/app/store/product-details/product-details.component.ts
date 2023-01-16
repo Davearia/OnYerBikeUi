@@ -5,8 +5,6 @@ import { Router } from "@angular/router";
 import { ProductService } from "src/app/services/product.service";
 import { StateService } from "src/app/services/state.service";
 import { Product } from "src/app/model/product.model";
-import { ProductCategory } from "src/app/model/ProductCategory.model";
-import { ProductSubCategory } from "src/app/model/productSubcategories.model";
 
 @Component({
   selector: 'app-product-details',

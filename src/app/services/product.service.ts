@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { first, map, Observable } from "rxjs";
 import { Product } from "../model/product.model";
 import { ProductCategory } from "../model/ProductCategory.model";
-import { ProductSubCategory } from "../model/productSubcategories.model";
+import { ProductSubCategory } from "../model/productSubCategory.model";
 
 @Injectable()
 export class ProductService {
@@ -84,7 +84,7 @@ export class ProductService {
 		}
 
 		return emptyProduct;
-	}
+	}	
 		
 }
 	

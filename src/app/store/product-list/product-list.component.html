@@ -1,3 +1,11 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="bg-dark text-white p-2">
+            <span class="navbar-brand ml-2 text-center">On Yer Bike!</span>
+            <cart-summary></cart-summary>
+        </div>
+    </div>   
+</div>
 <div class="row text-white">      
     <div class="col-10 p-2 text-dark">
         <div>              
@@ -18,7 +26,7 @@
                 <div class="card-text bg-white p-1">
                     <img src="data:image/png;base64,{{product.thumbNailPhoto}}" style="width:5%">
                     <button class="btn btn-success bg-dark btn-sm float-end"
-                            (click)="addToCart(product.productId)">
+                            (click)="addToCart(product)">
                         Add to Cart
                     </button>                   
                 </div>

@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
-
+import { Cart } from "./cart.model";
 
 @NgModule({
-    providers: []
+    providers: [Cart]
 })
 export class ModelModule { }

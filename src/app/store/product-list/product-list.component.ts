@@ -4,8 +4,10 @@ import { Router } from "@angular/router";
 import { ProductService } from "src/app/services/product.service";
 import { Product } from "src/app/model/product.model";
 import { ProductCategory } from "src/app/model/ProductCategory.model";
-import { ProductSubCategory } from "src/app/model/productSubcategories.model";
+import { ProductSubCategory } from "src/app/model/productSubCategory.model";
 import { StateService } from "src/app/services/state.service";
+import { Cart } from "src/app/model/cart.model";
+import { StoreComponent } from "../store.component";
 
 @Component({
     selector:'products',
@@ -16,7 +18,9 @@ export class ProductsComponent implements OnInit
 
     constructor(private productService: ProductService, 
         private router: Router,
-        private state: StateService)
+        private state: StateService,
+        private cart: Cart,
+        public store: StoreComponent)
         {}
    
     filteredProducts: Product[] = [];
@@ -52,7 +56,7 @@ export class ProductsComponent implements OnInit
                
         if(this.productSearch.length > 0){
             this.filteredProducts =  this.productService.getProductsByName(this.productSearch);
-            return this.filteredProducts.slice(pageIndex, pageIndex + this.productsPerPage);;
+            return this.filteredProducts.slice(pageIndex, pageIndex + this.productsPerPage);
         }
                        
         return this.productService.getProducts(this.selectedCategory, this.selectedSubCategory)       
@@ -76,8 +80,7 @@ export class ProductsComponent implements OnInit
         this.changePage(1);
     }
 
-    changeCategory(newCategory?: string) {
-        //console.log("changeCategory");
+    changeCategory(newCategory?: string) {       
         this.selectedSubCategory = "All";      
         this.selectedCategory = newCategory;
     }
@@ -103,8 +106,8 @@ export class ProductsComponent implements OnInit
         this.router.navigate(["product-details", productId]);
     }
 
-    addToCart(productId?: number){
-        
+    addToCart(product: Product){
+        this.cart.addLine(product);
     }
 
     addToState(){
