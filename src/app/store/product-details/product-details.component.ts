@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { ProductService } from "src/app/services/product.service";
 import { StateService } from "src/app/services/state.service";
 import { Product } from "src/app/model/product.model";
+import { Cart } from "src/app/model/cart.model";
 
 @Component({
   selector: 'app-product-details',
@@ -16,7 +17,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private state: StateService,
     private productService: ProductService,
     private router: Router,
-    private route: ActivatedRoute) { 
+    private route: ActivatedRoute,
+    private cart: Cart) { 
       
     }
 
@@ -28,10 +30,14 @@ export class ProductDetailsComponent implements OnInit {
 
     loadProduct(strProductId: string){
       if(Number(strProductId)){
-        this.product = this.productService.getProductById(parseInt(strProductId));  
-        
-        console.log(this.product);
+        this.product = this.productService.getProductById(parseInt(strProductId));                  
       }      
+    }
+
+    addToCart(){
+        console.log(this.product);
+        this.cart.addLine(this.product);
+        this.router.navigate(["product-list"]);
     }
 
     returnToProducts(){     

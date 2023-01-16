@@ -10,7 +10,7 @@
     <h2>Thanks!</h2>
     <p>Thanks for placing your order.</p>
     <p>We'll ship your goods as soon as possible.</p>
-    <button class="btn btn-primary" routerLink="/store">Return to Store</button>
+    <button class="btn btn-primary" routerLink="/product-list">Return to Store</button>
 </div>
 <form *ngIf="!orderSent" #form="ngForm" novalidate (ngSubmit)="submitOrder(form)" class="m-2">
     <div class="form-group">

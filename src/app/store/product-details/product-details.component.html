@@ -3,7 +3,7 @@
     <h3>{{product.name}}</h3>    
     <p>{{product.description}}</p>
     <p class="price">{{product.listPrice | currency:"GBP":"symbol"}}</p>
-    <p><button>Add to Cart</button></p>
+    <p><button (click)="addToCart()">Add to Cart</button></p>
     <p><button class="bg-primary" (click)="returnToProducts()">Return To Products</button></p>
   </div>
 
