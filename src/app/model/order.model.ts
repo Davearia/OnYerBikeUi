@@ -8,7 +8,7 @@ export class Order {
     public address?: string;
     public city?: string;
     public state?: string;
-    public zip?: string;
+    public postCode?: string;
     public country?: string;
     public shipped: boolean = false;
 
@@ -17,7 +17,7 @@ export class Order {
     clear() {
         this.id = undefined;
         this.name = this.address = this.city = undefined;
-        this.state = this.zip = this.country = undefined;
+        this.state = this.postCode = this.country = undefined;
         this.shipped = false;
         this.cart.clear();
     }

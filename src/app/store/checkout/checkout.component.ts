@@ -21,10 +21,11 @@ export class CheckoutComponent implements OnInit {
     this.submitted = true;
     if (form.valid) {
      
-        this.orderService.saveOrder(this.order);
-        this.order.clear();
-        this.orderSent = true;
-        this.submitted = false;
+        this.orderService.saveOrder(this.order).subscribe(order =>{
+          this.order.clear();
+          this.orderSent = true;
+          this.submitted = false;
+        });        
     }
     
   }
