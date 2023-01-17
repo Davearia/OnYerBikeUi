@@ -10,7 +10,8 @@ export class Order {
     public state?: string;
     public postCode?: string;
     public country?: string;
-    public shipped: boolean = false;
+    public shipped?: boolean = false;
+    public orderDate: Date = new Date;
 
     constructor(public cart: Cart) { }
 

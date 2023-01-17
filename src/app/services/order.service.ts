@@ -12,11 +12,10 @@ export class OrderService {
 	apiRoot: string = "http://localhost:5145/api/";
 	public product: Product = new Product;
 	
-	saveOrder(order: Order): Observable<void>{
+	saveOrder(order: Order): Observable<void>{		
 		return this.http.post<Order>(this.apiRoot + "order", order)
 		.pipe(map(data => {	
-			this.product = data;
-			console.log("Hello");
+			this.product = data;		
 			return
 		}));		
 	}
