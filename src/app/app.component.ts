@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppConfig } from 'src/config/app-config';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'On Yer Bike!';
+
+  constructor(private appConfig: AppConfig){
+    console.log(appConfig.webApiRoot);
+  }
 }

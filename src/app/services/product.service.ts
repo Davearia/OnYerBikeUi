@@ -4,18 +4,22 @@ import { first, map, Observable } from "rxjs";
 import { Product } from "../model/product.model";
 import { ProductCategory } from "../model/ProductCategory.model";
 import { ProductSubCategory } from "../model/productSubCategory.model";
+import { AppConfig } from 'src/config/app-config';
 
 @Injectable()
 export class ProductService {
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient,
+		private appConfig: AppConfig) { 
+			this.apiRoot = appConfig.webApiRoot
+		}
 
 	public products: Product[] = [];
 	public filteredProducts: Product[] = [];	
 	public productCategories: ProductCategory[] = [];
 	public productSubCategories: ProductSubCategory[] = [];
 
-	apiRoot: string = "http://localhost:5145/api/";
+	apiRoot: string | undefined;
 
 	loadProducts(): Observable<void> {
 		return this.http.get<Product[]>(this.apiRoot + "Product")
@@ -41,8 +45,7 @@ export class ProductService {
 			}));
 	}
 
-	getProducts(category?: string, subCategory?: string): Product[] {
-		
+	getProducts(category?: string, subCategory?: string): Product[] {		
 		if(category != null && category != 'All' && this.productSubCategories != null){			
 			var categoryId = this.productCategories.find(c => c.name == category)?.productCategoryId;			
 			if(categoryId != null){
