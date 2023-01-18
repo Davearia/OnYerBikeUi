@@ -14,7 +14,9 @@ export class JsonAppConfigService extends AppConfig{
     return this.http.get<AppConfig>('app.config.json')
       .toPromise()
       .then(data => {
-        this.webApiRoot = data?.webApiRoot
+        this.webApiRoot = data?.webApiRoot,
+        this.userName = data?.userName,
+        this.password = data?.password
       })
       .catch(() =>{
         console.error("Could not load configuration");

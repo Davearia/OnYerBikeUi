@@ -3,7 +3,9 @@ import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 
 @Component({
-    templateUrl: "admin.component.html"
+    selector:"admin",
+    templateUrl: "admin.component.html",
+    styleUrls: ["admin.component.css"]
 })
 export class AdminComponent {
 

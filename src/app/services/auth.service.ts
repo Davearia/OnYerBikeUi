@@ -1,21 +1,32 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { RestDataSource } from "./rest.datasource";
+import { AppConfig } from 'src/config/app-config';
 
 @Injectable()
 export class AuthService {
 
-    constructor(private datasource: RestDataSource) {}
+    constructor(private appConfig: AppConfig) {}
 
-    authenticate(username: string, password: string): Observable<boolean> {
-        return this.datasource.authenticate(username, password);
+    authenticated: boolean = false;
+
+    authenticate(username: string, password: string): boolean {
+        
+        var un = this.appConfig.userName;
+        var pw = this.appConfig.password;
+
+        this.authenticated = false;
+
+        if(username == un && password == pw){
+            this.authenticated = true;
+        }
+        
+        return this.authenticated;
     }
 
-    get authenticated(): boolean {
-        return this.datasource.auth_token != null;
+    get isAuthenticated(): boolean {
+        return this.authenticated;
     }
 
     clear() {
-        this.datasource.auth_token = undefined;
+        this.authenticated = false;
     }
 }

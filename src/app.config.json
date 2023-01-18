@@ -1,3 +1,5 @@
 {
-  "webApiRoot": "http://localhost:5145/api/"
+  "webApiRoot": "http://localhost:5145/api/",
+  "userName": "admin",
+  "password": "password"
 }
