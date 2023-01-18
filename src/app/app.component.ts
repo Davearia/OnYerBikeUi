@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'On Yer Bike!';
 
   constructor(private appConfig: AppConfig){
-    console.log(appConfig.webApiRoot);
+    //console.log(appConfig.webApiRoot);
   }
 }

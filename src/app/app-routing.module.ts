@@ -4,12 +4,14 @@ import { ProductsComponent } from './store/product-list/product-list.component';
 import { ProductDetailsComponent } from './store/product-details/product-details.component';
 import { CartDetailComponent } from "./store/cart-detail/cart-detail.component";
 import { CheckoutComponent } from './store/checkout/checkout.component';
+import { AdminComponent } from './store/admin/admin.component';
 import { StoreFirstGuard } from './store/storeFirst.guard';
 
 const routes: Routes = [{path:"product-list", component: ProductsComponent, canActivate: [StoreFirstGuard]},
                       {path:"product-details/:productId", component: ProductDetailsComponent, canActivate: [StoreFirstGuard]},
                       {path:"cart-details", component: CartDetailComponent, canActivate: [StoreFirstGuard]},                    
                       {path:"checkout", component: CheckoutComponent, canActivate: [StoreFirstGuard]},
+                      {path:"admin", component: AdminComponent},
                       {path: '**', component: ProductsComponent, canActivate: [StoreFirstGuard]}
                     ];
 
