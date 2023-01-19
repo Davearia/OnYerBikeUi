@@ -17,10 +17,12 @@ const routes: Routes = [{path:"product-list", component: ProductsComponent, canA
                       {path:"product-details/:productId", component: ProductDetailsComponent, canActivate: [StoreFirstGuard]},
                       {path:"cart-details", component: CartDetailComponent, canActivate: [StoreFirstGuard]},                    
                       {path:"checkout", component: CheckoutComponent, canActivate: [StoreFirstGuard]},
-                      {path:"auth", component: AuthComponent},                  
-                      {path:"orders", component: OrdersComponent, canActivate: [AuthGuard]},
-                      {path:"product-editor", component: ProductEditorComponent, canActivate: [AuthGuard]},                    
-                      {path:"admin", component: AdminComponent, canActivate: [AuthGuard]},
+
+                      {path:"auth", component: AuthComponent, canActivate: [StoreFirstGuard]},                  
+                      {path:"orders", component: OrdersComponent, canActivate: [AuthGuard, StoreFirstGuard]},
+                      {path:"product-editor", component: ProductEditorComponent, canActivate: [AuthGuard, StoreFirstGuard]},                    
+                      {path:"admin", component: AdminComponent, canActivate: [AuthGuard, StoreFirstGuard]},
+
                       {path: '**', component: ProductsComponent, canActivate: [StoreFirstGuard]}
                     ];
 
