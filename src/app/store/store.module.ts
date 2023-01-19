@@ -25,22 +25,19 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { AdminComponent } from "./admin/admin/admin.component";
 import { AuthComponent } from "./admin/auth/auth.component";
 import { AdminBannerComponent } from './admin/admin-banner/admin-banner.component';
-import { CategoryEditorComponent } from "./admin/category-editor/category-editor.component";
-import { OrderListComponent } from './admin/order-list/order-list.component';
-import { OrderViewComponent } from './admin/order-view/order-view.component';
+import { OrdersComponent } from './admin/orders/orders.component';
 import { ProductEditorComponent } from './admin/product-editor/product-editor.component';
-import { SubcategoryEditorComponent } from './admin/subcategory-editor/subcategory-editor.component';
 
 @NgModule({
     imports: [ModelModule, BrowserModule, FormsModule, HttpClientModule, RouterModule],
 
     declarations: [StoreComponent, ProductsComponent, CounterDirective, ProductDetailsComponent, ProductDetailsComponent, 
         CartDetailComponent, CartSummaryComponent, CheckoutComponent, AdminComponent, AuthComponent, AdminBannerComponent,
-        CategoryEditorComponent, OrderListComponent, OrderViewComponent, ProductEditorComponent, SubcategoryEditorComponent
+        OrdersComponent, ProductEditorComponent
     ],
 
     exports: [StoreComponent, ProductsComponent, ProductDetailsComponent, CartDetailComponent, CheckoutComponent, AdminComponent, AuthComponent,
-        CategoryEditorComponent, OrderListComponent, OrderViewComponent, ProductEditorComponent, SubcategoryEditorComponent],
+        OrdersComponent, ProductEditorComponent],
 
     providers:[ProductService, OrderService, AuthService
         , StoreComponent, StoreFirstGuard, Order, AuthGuard]

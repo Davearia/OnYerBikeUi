@@ -24,7 +24,7 @@ export class ProductService {
 	loadProducts(): Observable<void> {
 		return this.http.get<Product[]>(this.apiRoot + "Product")
 			.pipe(map(data => {
-				this.products = data;
+				this.products = data.sort((a, b) => a.name?.localeCompare(b.name));
 				return
 			}));
 	}
@@ -32,7 +32,7 @@ export class ProductService {
 	loadCategories(): Observable<void> {
 		return this.http.get<ProductCategory[]>(this.apiRoot + "ProductCategory")
 			.pipe(map(data => {
-				this.productCategories = data;
+				this.productCategories = data.sort((a, b) => a.name?.localeCompare(b.name));
 				return
 			}));
 	}
@@ -40,7 +40,7 @@ export class ProductService {
 	loadSubCategories(): Observable<void> {
 		return this.http.get<ProductSubCategory[]>(this.apiRoot + "ProductSubCategory")
 			.pipe(map(data => {
-				this.productSubCategories = data;
+				this.productSubCategories = data.sort((a, b) => a.name?.localeCompare(b.name));
 				return
 			}));
 	}
@@ -50,7 +50,7 @@ export class ProductService {
 			var categoryId = this.productCategories.find(c => c.name == category)?.productCategoryId;			
 			if(categoryId != null){
 				var subCategories = this.productSubCategories.filter(sc => sc.productCategoryId == categoryId).map(sc => sc.productSubCategoryId);																					
-				this.filteredProducts = this.products.filter(p => subCategories.includes(p.productSubcategoryId));
+				this.filteredProducts = this.products.filter(p => subCategories.includes(p.productSubcategoryId)).sort();
 				
 				return this.filteredProducts;
 			}

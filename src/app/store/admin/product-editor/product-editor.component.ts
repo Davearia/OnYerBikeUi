@@ -18,9 +18,12 @@ export class ProductEditorComponent implements OnInit {
     private router: Router)
     {}
 
-    filteredProducts: Product[] = [];
+    filteredProducts: Product[] = [];   
+    filteredSubCategories: ProductSubCategory[] = [];   
     selectedCategory: string | undefined = 'All';
-    selectedSubCategory: string | undefined = 'All';   
+    selectedProductCategory: string | undefined ;
+    selectedSubCategory: string | undefined = 'All'; 
+    selectedProductSubCategory: string | undefined;  
     productSearch: string = ''; 
     productId: number | undefined = 0; 
     errorMessage?: string;
@@ -50,8 +53,7 @@ export class ProductEditorComponent implements OnInit {
     }
                    
     return this.productService.getProducts(this.selectedCategory, this.selectedSubCategory)       
-        .slice(pageIndex, pageIndex + this.productsPerPage);
-        
+        .slice(pageIndex, pageIndex + this.productsPerPage);        
     }
 
   get categories(): ProductCategory[]{
@@ -95,9 +97,22 @@ export class ProductEditorComponent implements OnInit {
     if (productId != null){
       this.product = this.productService.getProductById(productId);
       this.productId = productId;
+
+      var categoryId = this.subCategories.find(c => c.productSubCategoryId == this.product.productSubcategoryId)?.productCategoryId;
+      this.selectedProductCategory = this.categories.find(c => c.productCategoryId == categoryId)?.name; 
+
+      this.filteredSubCategories = this.subCategories.filter(c => c.productCategoryId == categoryId);
+      this.selectedProductSubCategory = this.subCategories.find(c => c.productSubCategoryId == this.product.productSubcategoryId)?.name;
+           
     }  
   }
 
+  changeSelectedProductCategories(newCategory?: string){
+    var categoryId = this.categories.find(c => c.name == newCategory)?.productCategoryId;
+    this.filteredSubCategories = this.subCategories.filter(c => c.productCategoryId == categoryId);
+    this.selectedProductSubCategory = this.filteredSubCategories[0].name; 
+  }
+  
   closeEditor(){
       this.productId = 0;
   }
