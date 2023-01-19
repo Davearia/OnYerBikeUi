@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { NgForm } from "@angular/forms";
+
 import { ProductService } from "src/app/services/product.service";
 import { Product } from "src/app/model/product.model";
 import { ProductCategory } from "src/app/model/ProductCategory.model";
@@ -28,6 +30,8 @@ export class ProductEditorComponent implements OnInit {
     productId: number | undefined = 0; 
     errorMessage?: string;
     product: Product = new Product; 
+    isEditing: boolean = false;
+    submitted: boolean = false;
 
     productsPerPage = 8;
     selectedPage = 1;
@@ -95,6 +99,8 @@ export class ProductEditorComponent implements OnInit {
 
   editProduct(productId?: number){  
     if (productId != null){
+    this.isEditing = true;
+
       this.product = this.productService.getProductById(productId);
       this.productId = productId;
 
@@ -107,6 +113,12 @@ export class ProductEditorComponent implements OnInit {
     }  
   }
 
+  newProduct(){
+    this.product = new Product;
+    this.productId = 0;
+    this.isEditing = true;
+  }
+
   changeSelectedProductCategories(newCategory?: string){
     var categoryId = this.categories.find(c => c.name == newCategory)?.productCategoryId;
     this.filteredSubCategories = this.subCategories.filter(c => c.productCategoryId == categoryId);
@@ -114,13 +126,27 @@ export class ProductEditorComponent implements OnInit {
   }
   
   closeEditor(){
+      this.isEditing =false;
       this.productId = 0;
   }
 
-  save() {
-    //this.repository.saveProduct(this.product);
-    //this.router.navigateByUrl("/admin/main/products");
-    this.closeEditor();    
+  save(form: NgForm) {
+    this.submitted = true;
+    if (form.valid) {
+      this.product.productSubcategoryId = this.subCategories.find(c => c.name == this.selectedProductSubCategory)?.productSubCategoryId;
+
+     if(this.isEditing && this.productId!= null && this.productId > 0){
+      this.productService.updateProduct(this.product).subscribe(order =>{
+        this.submitted = false;
+      });          
+     }else{       
+      this.productService.createProduct(this.product).subscribe(order =>{
+        this.submitted = false;
+      });
+     }   
+    
+    }
+      
 }
   
   get pageCount(): number {       

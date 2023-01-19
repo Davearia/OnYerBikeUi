@@ -14,6 +14,7 @@ export class ProductService {
 			this.apiRoot = appConfig.webApiRoot
 		}
 
+	public product: Product = new Product;
 	public products: Product[] = [];
 	public filteredProducts: Product[] = [];	
 	public productCategories: ProductCategory[] = [];
@@ -87,7 +88,23 @@ export class ProductService {
 		}
 
 		return emptyProduct;
-	}	
+	}
+	
+	updateProduct(product: Product): Observable<void>{		
+		return this.http.put<Product>(this.apiRoot + "product/" + product.productId, product)
+		.pipe(map(data => {	
+			this.product = data;		
+			return
+		}));		
+	}
+
+	createProduct(product: Product): Observable<void>{		
+		return this.http.post<Product>(this.apiRoot + "product", product)
+		.pipe(map(data => {	
+			this.product = data;		
+			return
+		}));		
+	}
 		
 }
 	

@@ -1,5 +1,5 @@
 <admin-banner></admin-banner>
-<div *ngIf="productId == 0" class="row text-white">      
+<div *ngIf="!isEditing" class="row text-white">      
     <div class="col-3 p-2 text-dark">
         <div>              
             <div id="products" *ngFor="let product of products" class="card m-1 p-1 bg-light">
@@ -73,44 +73,69 @@
                 </div>
             </div> 
         </div>
+        <div id="newProduct" class='row'>
+            <button class="btn btn-danger mt-5"  width='80%' (click)="newProduct()">
+                Create new product
+            </button>
+        </div>  
         <div id="back" class='row'>
             <button class="btn btn-primary mt-5"  width='80%' routerLink="/product-list">
                 Back
             </button>
-        </div>                                
+        </div>                                          
     </div>     
 </div>
 
-<div *ngIf="productId != 0" class="row">      
+<div *ngIf="isEditing" class="row">      
     <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="errorMessage != null">
         {{errorMessage}}
     </div>
     <div class="container-fluid">
-        <form novalidate #form="ngForm" (ngSubmit)="save()" class="m-2">
+        <form novalidate #form="ngForm" (ngSubmit)="save(form)" class="m-2">
             <div class="form-group">
                 <label>Name</label>
-                <input class="form-control" name="name" 
-                    [(ngModel)]="product.name" required />
+                <input class="form-control" name="name" #name="ngModel"
+                    [(ngModel)]="product.name" required 
+                />
+                <span *ngIf="submitted && name.invalid" class="text-danger">
+                    Please enter a product name
+                </span>
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <input class="form-control" name="description" 
-                    [(ngModel)]="product.description" required />
+                <input class="form-control" name="description" #description="ngModel"
+                    [(ngModel)]="product.description" required 
+                />
+                <span *ngIf="submitted && description.invalid" class="text-danger">
+                    Please enter a product description
+                </span>
             </div>
             <div class="form-group">
                 <label>List Price</label>
-                <input class="form-control" name="listPrice" 
-                    [(ngModel)]="product.listPrice" required />
+                <input class="form-control" name="listPrice" #listPrice="ngModel"
+                    [(ngModel)]="product.listPrice" required 
+                />
+                <span *ngIf="submitted && listPrice.invalid" class="text-danger">
+                    Please enter a list price
+                </span>
             </div>
             <div class="form-group">
                 <label>Size</label>
-                <input class="form-control" name="size" 
-                    [(ngModel)]="product.size" required />
+                <input class="form-control" name="size" #size="ngModel"
+                    [(ngModel)]="product.size" required 
+                />
+                <span *ngIf="submitted && size.invalid" class="text-danger">
+                    Please enter a size
+                </span>
             </div>
             <div class="form-group">
                 <label>Weight</label>
-                <input class="form-control" weight="size" name="weight"
-                    [(ngModel)]="product.weight" required />
+                <input class="form-control" weight="size" name="weight" type="number" #weight="ngModel"
+                    [(ngModel)]="product.weight" required 
+                />
+                <span *ngIf="submitted && weight.invalid" class="text-danger">
+                    Please enter a weight
+                </span>
             </div>
 
             <div class="form-group">
@@ -124,7 +149,7 @@
 
             <div class="form-group">
                 <label>Subcategory</label>
-                <select [(ngModel)]="selectedProductSubCategory" name="subCategories" class="form-control">                    
+                <select [(ngModel)]="selectedProductSubCategory" [value]="[(selectedProductSubCategory)]" name="subCategories" class="form-control">                    
                     <option *ngFor="let subCategories of filteredSubCategories"> 
                         {{subCategories.name}}                  
                     </option>
