@@ -13,7 +13,7 @@
                     <label>Order Date:&nbsp;</label>{{order.orderDate | date: 'dd/MM/yyyy'}}                               
                 </div>
                 <div class="card-text bg-white p-1">
-                    <label>Price:&nbsp;</label>{{order.orderPrice}}                                     
+                    <label>Price:&nbsp;</label>{{order.orderPrice | currency:"GBP":"symbol"}}                                     
                 </div>
                 <div class="card-text bg-white p-1">
                     <label>Quantity:&nbsp;</label>{{order.orderQuantity}} 
@@ -76,7 +76,7 @@
                     <label>Order Date:&nbsp;</label>{{selectedOrder.orderDate | date: 'dd/MM/yyyy'}}                                     
                 </div>
                 <div class="card-text bg-white p-1">
-                    <label>Price:&nbsp;</label>{{selectedOrder.orderPrice}}                                     
+                    <label>Price:&nbsp;</label>{{selectedOrder.orderPrice | currency:"GBP":"symbol"}}                                     
                 </div>
                 <div class="card-text bg-white p-1">
                     <label>Quantity:&nbsp;</label>{{selectedOrder.orderQuantity}}                                       
@@ -95,7 +95,7 @@
                     <label>Quantity:&nbsp;</label>{{orderDetail.quantity}}                                     
                 </div>
                 <div class="card-text bg-white p-1">
-                    <label>Price:&nbsp;</label>{{orderDetail.price}}                               
+                    <label>Price:&nbsp;</label>{{orderDetail.price | currency:"GBP":"symbol"}}                               
                 </div>                                    
             </div> 
         </div>           
