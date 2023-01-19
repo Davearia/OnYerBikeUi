@@ -1,1 +1,106 @@
-<p>order-view works!</p>
+<admin-banner></admin-banner>
+<div *ngIf="!inPreviewMode" class="row text-white">      
+    <div class="col-2 p-2 text-dark">
+        <div>              
+            <div id="orders" *ngFor="let order of orders" class="card m-1 p-1 bg-light">                
+                <div class="card-text bg-white p-1">
+                    <label>Name:&nbsp;</label>{{order.name}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Address:&nbsp;</label>{{order.address}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Order Date:&nbsp;</label>{{order.orderDate | date: 'dd/MM/yyyy'}}                               
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Price:&nbsp;</label>{{order.orderPrice}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Quantity:&nbsp;</label>{{order.orderQuantity}} 
+                    
+                    <button class="btn btn-success bg-dark btn-sm float-end"
+                            (click)="viewOrderDetails(order)">
+                        Details
+                    </button> 
+                </div>                            
+            </div>
+            <div id="productsPerPAge" class="form-inline float-start mr-1">
+                <select class="form-control" [value]="ordersPerPage"
+                        (change)="changePageSize($any($event).target.value)">
+                    <option value="8">8 per Page</option>
+                    <option value="15">15 per Page</option>
+                    <option value="20">20 per Page</option>
+                    <option value="25">25 per Page</option>
+                </select>
+            </div>
+            <div id="pageButtons" class="btn-group">
+                <button *counter="let page of pageCount" (click)="changePage(page)"
+                        class="btn btn-outline-primary" 
+                        [class.active]="page == selectedPage">
+                    {{page}}
+                </button>
+            </div> 
+            <div class="text-center p-2">                       
+                <button class="btn btn-primary m-1 button" routerLink="/admin">Back</button>
+            </div> 
+        </div>
+    </div>      
+</div>
+<div *ngIf="inPreviewMode" class="row text-white"> 
+    <div class="col-2 p-2 text-dark">
+        <div>    
+            <label class='label'>Order Header</label>                      
+            <div id="order" class="card m-1 p-1 bg-light">                           
+                <div class="card-text bg-white p-1">
+                    <label>Name:&nbsp;</label>{{selectedOrder.name}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Address:&nbsp;</label>{{selectedOrder.address}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>City:&nbsp;</label>{{selectedOrder.city}}                                       
+                </div> 
+                <div class="card-text bg-white p-1">
+                    <label>State:&nbsp;</label>{{selectedOrder.state}}                                       
+                </div> 
+                <div class="card-text bg-white p-1">
+                    <label>PostCode:&nbsp;</label>{{selectedOrder.postCode}}                                       
+                </div> 
+                <div class="card-text bg-white p-1">
+                    <label>Country:&nbsp;</label>{{selectedOrder.country}}                                       
+                </div> 
+                <div class="card-text bg-white p-1">
+                    <label>Shipped:&nbsp;</label>{{selectedOrder.shipped}}                                       
+                </div> 
+                <div class="card-text bg-white p-1">
+                    <label>Order Date:&nbsp;</label>{{selectedOrder.orderDate | date: 'dd/MM/yyyy'}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Price:&nbsp;</label>{{selectedOrder.orderPrice}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Quantity:&nbsp;</label>{{selectedOrder.orderQuantity}}                                       
+                </div> 
+            </div>
+        </div>      
+    </div>
+    <div class="col-8 p-2 text-dark">
+        <div>        
+            <label class='label'>Order Lines</label>      
+            <div id="orders" *ngFor="let orderDetail of orderDetails" class="card m-1 p-1 bg-light">                
+                <div class="card-text bg-white p-1">
+                    <label>Product:&nbsp;</label>{{orderDetail.name}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Quantity:&nbsp;</label>{{orderDetail.quantity}}                                     
+                </div>
+                <div class="card-text bg-white p-1">
+                    <label>Price:&nbsp;</label>{{orderDetail.price}}                               
+                </div>                                    
+            </div> 
+        </div>           
+    </div> 
+    <div class="text-center p-2">                       
+        <button class="btn btn-primary m-1 button" (click)="closeOrderDetails()">Back</button>
+    </div>    
+</div>
