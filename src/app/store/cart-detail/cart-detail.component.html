@@ -55,12 +55,12 @@
     </div>
     <div class="row">
         <div class="col">
-            <div class="text-center">
+            <div class="text-center">               
+                <button class="btn btn-success m-1" routerLink="/checkout" [disabled]="cart.lines.length == 0">
+                    Checkout
+                </button>
                 <button class="btn btn-primary m-1" routerLink="/product-list">
                     Back
-                </button>
-                <button class="btn btn-secondary m-1" routerLink="/checkout" [disabled]="cart.lines.length == 0">
-                    Checkout
                 </button>
             </div>
         </div>
