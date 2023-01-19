@@ -18,9 +18,9 @@ const routes: Routes = [{path:"product-list", component: ProductsComponent, canA
                       {path:"cart-details", component: CartDetailComponent, canActivate: [StoreFirstGuard]},                    
                       {path:"checkout", component: CheckoutComponent, canActivate: [StoreFirstGuard]},
                       {path:"auth", component: AuthComponent},                  
-                      {path:"orders", component: OrdersComponent},
-                      {path:"product-editor", component: ProductEditorComponent},                    
-                      {path:"admin", component: AdminComponent},
+                      {path:"orders", component: OrdersComponent, canActivate: [AuthGuard]},
+                      {path:"product-editor", component: ProductEditorComponent, canActivate: [AuthGuard]},                    
+                      {path:"admin", component: AdminComponent, canActivate: [AuthGuard]},
                       {path: '**', component: ProductsComponent, canActivate: [StoreFirstGuard]}
                     ];
 
