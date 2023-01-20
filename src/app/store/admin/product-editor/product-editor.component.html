@@ -1,165 +1,236 @@
 <admin-banner></admin-banner>
-<div *ngIf="!isEditing" class="row text-white">      
+<div class="container-fluid">
+  <div *ngIf="!isEditing" class="row text-white">
     <div class="col-3 p-2 text-dark">
-        <div>              
-            <div id="products" *ngFor="let product of products" class="card m-1 p-1 bg-light">
-                <h4>
-                    {{product.name}}
-                    
-                </h4>
-                <div class="card-text bg-white p-1">                  
-                    <button class="btn btn-success btn-sm float-end"
-                            (click)="editProduct(product.productId)">
-                        Edit Product
-                    </button>                   
-                </div>                              
-            </div>
-            <div id="productsPerPAge" class="form-inline float-start mr-1">
-                <select class="form-control" [value]="productsPerPage"
-                        (change)="changePageSize($any($event).target.value)">
-                    <option value="8">8 per Page</option>
-                    <option value="15">15 per Page</option>
-                    <option value="20">20 per Page</option>
-                    <option value="25">25 per Page</option>
-                </select>
-            </div>
-            <div id="pageButtons" class="btn-group">
-                <button *counter="let page of pageCount" (click)="changePage(page)"
-                        class="btn btn-outline-primary" 
-                        [class.active]="page == selectedPage">
-                    {{page}}
-                </button>
-            </div> 
+      <div>
+        <div
+          id="products"
+          *ngFor="let product of products"
+          class="card m-1 p-1 bg-light"
+        >
+          <h4>
+            {{ product.name }}
+          </h4>
+          <div class="card-text bg-white p-1">
+            <button
+              class="btn btn-success btn-sm float-end"
+              (click)="editProduct(product.productId)"
+            >
+              Edit Product
+            </button>
+          </div>
         </div>
+      </div>
     </div>
     <div class="col-2 p-2 bg-light">
-        <div id="category">
-            <div class="row">
-                <div class="bg-light text-black p-2">
-                    <span class="navbar-brand ml-2">Categories:</span>
-                </div>
-            </div>
-            <div class="d-grid">
-                <select (change)="changeCategory($any($event).target.value)" [value]="[(selectedCategory)]">
-                    <option>All</option>
-                    <option *ngFor="let category of categories"> 
-                        {{category.name}}                  
-                    </option>
-                </select>
-            </div> 
+      <div id="category">
+        <div class="row">
+          <div class="bg-light text-black p-2">
+            <span class="navbar-brand ml-2">Categories:</span>
+          </div>
         </div>
-        <div id="subCategory">
-            <div class="row">
-                <div class="bg-light text-black p-2">
-                    <span class="navbar-brand ml-2">Sub categories:</span>
-                </div>
-            </div>  
-            <div class="d-grid">
-                <select (change)="changeSubCategory($any($event).target.value)" [value]="[(selectedSubCategory)]">
-                    <option>All</option>
-                    <option *ngFor="let subCategory of subCategories"> 
-                        {{subCategory.name}}                  
-                    </option>
-                </select>
-            </div>  
-        </div>           
-        <div id="productSearch">
-            <div class="row">
-                <div class="bg-light text-black p-2">
-                    <span class="navbar-brand ml-2">Search:</span>
-                </div>
-                <div class="bg-light text-black p-2 d-grid">
-                    <input type="text" name="productSearch" class="form-control" placeholder="Search..." value={{productSearch}}  (input)="handleInputEvent($event)"/>
-                </div>
-            </div> 
+        <div class="d-grid">
+          <select
+            (change)="changeCategory($any($event).target.value)"
+            [value]="[selectedCategory]"
+          >
+            <option>All</option>
+            <option *ngFor="let category of categories">
+              {{ category.name }}
+            </option>
+          </select>
         </div>
-        <div id="newProduct" class='row'>
-            <button class="btn btn-danger mt-5"  width='80%' (click)="newProduct()">
-                Create new product
-            </button>
-        </div>  
-        <div id="back" class='row'>
-            <button class="btn btn-primary mt-5"  width='80%' routerLink="/admin">
-                Back
-            </button>
-        </div>                                          
-    </div>     
-</div>
+      </div>
+      <div id="subCategory">
+        <div class="row">
+          <div class="bg-light text-black p-2">
+            <span class="navbar-brand ml-2">Sub categories:</span>
+          </div>
+        </div>
+        <div class="d-grid">
+          <select
+            (change)="changeSubCategory($any($event).target.value)"
+            [value]="[selectedSubCategory]"
+          >
+            <option>All</option>
+            <option *ngFor="let subCategory of subCategories">
+              {{ subCategory.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div id="productSearch">
+        <div class="row">
+          <div class="bg-light text-black p-2">
+            <span class="navbar-brand ml-2">Search:</span>
+          </div>
+          <div class="bg-light text-black p-2 d-grid">
+            <input
+              type="text"
+              name="productSearch"
+              class="form-control"
+              placeholder="Search..."
+              value="{{ productSearch }}"
+              (input)="handleInputEvent($event)"
+            />
+          </div>
+        </div>
+      </div>
+      <div id="newProduct" class="row">
+        <button class="btn btn-danger mt-5" width="80%" (click)="newProduct()">
+          Create new product
+        </button>
+      </div>
+    </div>
+    <div class="row text-white">
+      <div class="col-12 p-2 text-dark productsPerPage">
+        <div
+          id="productsPerPage"
+          class="form-inline float-start mr-1 productsPerPage"
+        >
+          <select
+            class="form-control"
+            [value]="productsPerPage"
+            (change)="changePageSize($any($event).target.value)"
+          >
+            <option value="8">8 per Page</option>
+            <option value="15">15 per Page</option>
+            <option value="20">20 per Page</option>
+            <option value="25">25 per Page</option>
+          </select>
+        </div>
+        <div id="pageButtons">
+          <button
+            *counter="let page of pageCount"
+            (click)="changePage(page)"
+            class="btn btn-outline-primary page-button"
+            [class.active]="page == selectedPage"
+          >
+            {{ page }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center p-2">
+      <button class="btn btn-primary m-1 button" routerLink="/admin">
+        Back
+      </button>
+    </div>
+  </div>
 
-<div *ngIf="isEditing" class="row">      
-    <div class="bg-danger mt-2 p-2 text-center text-white" *ngIf="errorMessage != null">
-        {{errorMessage}}
+  <div *ngIf="isEditing" class="row">
+    <div
+      class="bg-danger mt-2 p-2 text-center text-white"
+      *ngIf="errorMessage != null"
+    >
+      {{ errorMessage }}
     </div>
     <div class="container-fluid">
-        <form novalidate #form="ngForm" (ngSubmit)="save(form)" class="m-2">
-            <div class="form-group">
-                <label>Name</label>
-                <input class="form-control" name="name" #name="ngModel"
-                    [(ngModel)]="product.name" required 
-                />
-                <span *ngIf="submitted && name.invalid" class="text-danger">
-                    Please enter a product name
-                </span>
-            </div>
-            <div class="form-group">
-                <label>Description</label>
-                <input class="form-control" name="description" #description="ngModel"
-                    [(ngModel)]="product.description" required 
-                />
-                <span *ngIf="submitted && description.invalid" class="text-danger">
-                    Please enter a product description
-                </span>
-            </div>
-            <div class="form-group">
-                <label>List Price</label>
-                <input class="form-control" name="listPrice" #listPrice="ngModel"
-                    [(ngModel)]="product.listPrice" required 
-                />
-                <span *ngIf="submitted && listPrice.invalid" class="text-danger">
-                    Please enter a list price
-                </span>
-            </div>
-            <div class="form-group">
-                <label>Size</label>
-                <input class="form-control" name="size" #size="ngModel"
-                    [(ngModel)]="product.size" required 
-                />
-                <span *ngIf="submitted && size.invalid" class="text-danger">
-                    Please enter a size
-                </span>
-            </div>
-            <div class="form-group">
-                <label>Weight</label>
-                <input class="form-control" weight="size" name="weight" type="number" #weight="ngModel"
-                    [(ngModel)]="product.weight" required 
-                />
-                <span *ngIf="submitted && weight.invalid" class="text-danger">
-                    Please enter a weight
-                </span>
-            </div>
+      <form novalidate #form="ngForm" (ngSubmit)="save(form)" class="m-2">
+        <div class="form-group">
+          <label>Name</label>
+          <input
+            class="form-control"
+            name="name"
+            #name="ngModel"
+            [(ngModel)]="product.name"
+            required
+          />
+          <span *ngIf="submitted && name.invalid" class="text-danger">
+            Please enter a product name
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input
+            class="form-control"
+            name="description"
+            #description="ngModel"
+            [(ngModel)]="product.description"
+            required
+          />
+          <span *ngIf="submitted && description.invalid" class="text-danger">
+            Please enter a product description
+          </span>
+        </div>
+        <div class="form-group">
+          <label>List Price</label>
+          <input
+            class="form-control"
+            name="listPrice"
+            #listPrice="ngModel"
+            [(ngModel)]="product.listPrice"
+            required
+          />
+          <span *ngIf="submitted && listPrice.invalid" class="text-danger">
+            Please enter a list price
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Size</label>
+          <input
+            class="form-control"
+            name="size"
+            #size="ngModel"
+            [(ngModel)]="product.size"
+            required
+          />
+          <span *ngIf="submitted && size.invalid" class="text-danger">
+            Please enter a size
+          </span>
+        </div>
+        <div class="form-group">
+          <label>Weight</label>
+          <input
+            class="form-control"
+            weight="size"
+            name="weight"
+            type="number"
+            #weight="ngModel"
+            [(ngModel)]="product.weight"
+            required
+          />
+          <span *ngIf="submitted && weight.invalid" class="text-danger">
+            Please enter a weight
+          </span>
+        </div>
 
-            <div class="form-group">
-                <label>Category</label>
-                <select [(ngModel)]="selectedProductCategory" name='catagories' class="form-control" (change)="changeSelectedProductCategories($any($event).target.value)">                 
-                    <option *ngFor="let category of categories"> 
-                        {{category.name}}                  
-                    </option>
-                </select>
-            </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select
+            [(ngModel)]="selectedProductCategory"
+            name="catagories"
+            class="form-control"
+            (change)="
+              changeSelectedProductCategories($any($event).target.value)
+            "
+          >
+            <option *ngFor="let category of categories">
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
 
-            <div class="form-group">
-                <label>Subcategory</label>
-                <select [(ngModel)]="selectedProductSubCategory" [value]="[(selectedProductSubCategory)]" name="subCategories" class="form-control">                    
-                    <option *ngFor="let subCategories of filteredSubCategories"> 
-                        {{subCategories.name}}                  
-                    </option>
-                </select>
-            </div>
-            
-            <div class="text-center p-2">                
-                <button class="btn btn-danger m-1 button" type="submit">Save</button>
-                <button class="btn btn-primary m-1 button" (click)="closeEditor()">Back</button>
-            </div>
-        </form>
-    </div>     
+        <div class="form-group">
+          <label>Subcategory</label>
+          <select
+            [(ngModel)]="selectedProductSubCategory"
+            [value]="[selectedProductSubCategory]"
+            name="subCategories"
+            class="form-control"
+          >
+            <option *ngFor="let subCategories of filteredSubCategories">
+              {{ subCategories.name }}
+            </option>
+          </select>
+        </div>
+        <div class="text-center p-2">
+          <button class="btn btn-danger m-1 button" type="submit">Save</button>
+          <button class="btn btn-primary m-1 button" (click)="closeEditor()">
+            Back
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

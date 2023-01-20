@@ -1,4 +1,13 @@
+.container-fluid{
+    width: 99.6%;
+}
 .button{
-    width: 200px;  
-    margin-left: 10px !important;
+    width: 112px;
+}
+.page-button{
+    width: 40px;
+    border-radius: 0;  
+}
+#productsPerPage{
+    margin-right: 1px;
 }

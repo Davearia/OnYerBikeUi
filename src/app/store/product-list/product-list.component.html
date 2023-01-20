@@ -1,98 +1,123 @@
 <store></store>
-<div class="row text-white">      
+<div class="container-fluid">
+  <div class="row text-white">
     <div class="col-10 p-2 text-dark">
-        <div>              
-            <div id="products" *ngFor="let product of products" class="card m-1 p-1 bg-light">
-                <h4>
-                    {{product.name}}
-                    <span class="badge rounded-pill bg-primary" style="float:right">
-                        {{ product.listPrice | currency:"GBP":"symbol" }}
-                    </span>
-                </h4>
-                <div class="card-text bg-white p-1">
-                    {{product.description}}
-                    <button class="btn btn-success btn-sm float-end"
-                            (click)="productDetails(product.productId)">
-                        Product Details
-                    </button>                   
-                </div>
-                <div class="card-text bg-white p-1">
-                    <img src="data:image/png;base64,{{product.thumbNailPhoto}}" style="width:5%">
-                    <button class="btn btn-success bg-dark btn-sm float-end"
-                            (click)="addToCart(product)">
-                        Add to Cart
-                    </button>                   
-                </div>
-              
-            </div>
-            <div id="productsPerPAge" class="form-inline float-start mr-1">
-                <select class="form-control" [value]="productsPerPage"
-                        (change)="changePageSize($any($event).target.value)">
-                    <option value="8">8 per Page</option>
-                    <option value="15">15 per Page</option>
-                    <option value="20">20 per Page</option>
-                    <option value="25">25 per Page</option>
-                </select>
-            </div>
-            <div id="pageButtons" class="btn-group">
-                <button *counter="let page of pageCount" (click)="changePage(page)"
-                        class="btn btn-outline-primary" 
-                        [class.active]="page == selectedPage">
-                    {{page}}
-                </button>
-            </div> 
+      <div>
+        <div
+          id="products"
+          *ngFor="let product of products"
+          class="card m-1 p-1 bg-light"
+        >
+          <h4>
+            {{ product.name }}
+            <span class="badge rounded-pill bg-primary" style="float: right">
+              {{ product.listPrice | currency : 'GBP' : 'symbol' }}
+            </span>
+          </h4>
+          <div class="card-text bg-white p-1">
+            {{ product.description }}
+            <button
+              class="btn btn-success btn-sm float-end"
+              (click)="productDetails(product.productId)"
+            >
+              Product Details
+            </button>
+          </div>
+          <div class="card-text bg-white p-1">
+            <img
+              src="data:image/png;base64,{{ product.thumbNailPhoto }}"
+              style="width: 5%"
+            />
+            <button
+              class="btn btn-success bg-dark btn-sm float-end button"
+              (click)="addToCart(product)"
+            >
+              Add to Cart
+            </button>
+          </div>
         </div>
+      </div>
     </div>
     <div class="col-2 p-2 bg-light">
-        <div id="category">
-            <div class="row">
-                <div class="bg-light text-black p-2">
-                    <span class="navbar-brand ml-2">Categories:</span>
-                </div>
-            </div>
-            <div class="d-grid">
-                <select (change)="changeCategory($any($event).target.value)" [value]="[(selectedCategory)]">
-                    <option>All</option>
-                    <option *ngFor="let category of categories"> 
-                        {{category.name}}                  
-                    </option>
-                </select>
-            </div> 
+      <div id="category">
+        <div class="row">
+          <div class="bg-light text-black p-2">
+            <span class="navbar-brand ml-2">Categories:</span>
+          </div>
         </div>
-        <div id="subCategory">
-            <div class="row">
-                <div class="bg-light text-black p-2">
-                    <span class="navbar-brand ml-2">Sub categories:</span>
-                </div>
-            </div>  
-            <div class="d-grid">
-                <select (change)="changeSubCategory($any($event).target.value)" [value]="[(selectedSubCategory)]">
-                    <option>All</option>
-                    <option *ngFor="let subCategory of subCategories"> 
-                        {{subCategory.name}}                  
-                    </option>
-                </select>
-            </div>  
-        </div>           
-        <div id="productSearch">
-            <div class="row">
-                <div class="bg-light text-black p-2">
-                    <span class="navbar-brand ml-2">Search:</span>
-                </div>
-                <div class="bg-light text-black p-2 d-grid">
-                    <input type="text" name="productSearch" class="form-control" placeholder="Search..." value={{productSearch}}  (input)="handleInputEvent($event)"/>
-                </div>
-            </div> 
+        <div class="d-grid">
+          <select
+            (change)="changeCategory($any($event).target.value)"
+            [value]="[selectedCategory]"
+          >
+            <option>All</option>
+            <option *ngFor="let category of categories">
+              {{ category.name }}
+            </option>
+          </select>
         </div>
-        <div id="admin" class='row'>
-            <button class="btn btn-danger mt-5"  width='80%' routerLink="/auth">
-                Admin
-            </button>
-        </div>                          
-    </div>     
+      </div>
+      <div id="subCategory">
+        <div class="row">
+          <div class="bg-light text-black p-2">
+            <span class="navbar-brand ml-2">Sub categories:</span>
+          </div>
+        </div>
+        <div class="d-grid">
+          <select
+            (change)="changeSubCategory($any($event).target.value)"
+            [value]="[selectedSubCategory]"
+          >
+            <option>All</option>
+            <option *ngFor="let subCategory of subCategories">
+              {{ subCategory.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div id="productSearch">
+        <div class="row">
+          <div class="bg-light text-black p-2">
+            <span class="navbar-brand ml-2">Search:</span>
+          </div>
+          <div class="bg-light text-black p-2 d-grid">
+            <input
+              type="text"
+              name="productSearch"
+              class="form-control"
+              placeholder="Search..."
+              value="{{ productSearch }}"
+              (input)="handleInputEvent($event)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-white">
+    <div class="col-12 p-2 text-dark productsPerPage">
+      <div id="productsPerPage" class="form-inline float-start mr-1">
+        <select
+          class="form-control"
+          [value]="productsPerPage"
+          (change)="changePageSize($any($event).target.value)"
+        >
+          <option value="5">5 per Page</option>
+          <option value="15">15 per Page</option>
+          <option value="20">20 per Page</option>
+          <option value="25">25 per Page</option>
+        </select>
+      </div>
+      <div id="pageButtons">
+        <button
+          *counter="let page of pageCount"
+          (click)="changePage(page)"
+          class="btn btn-outline-primary page-button"
+          [class.active]="page == selectedPage"
+        >
+          {{ page }}
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-
-

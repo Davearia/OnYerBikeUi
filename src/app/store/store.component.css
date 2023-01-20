@@ -1,0 +1,9 @@
+#siteName{
+    font-size: x-large;
+    padding-top: 2px;
+}
+
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }

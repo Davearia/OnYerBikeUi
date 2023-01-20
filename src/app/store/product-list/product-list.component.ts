@@ -11,7 +11,8 @@ import { StoreComponent } from "../store.component";
 
 @Component({
     selector:'products',
-    templateUrl:'product-list.component.html'
+    templateUrl:'product-list.component.html',
+    styleUrls:['product-list.component.css']
 })
 export class ProductsComponent implements OnInit
 {
@@ -28,7 +29,7 @@ export class ProductsComponent implements OnInit
     selectedSubCategory: string | undefined = 'All';   
     productSearch: string = '';   
 
-    productsPerPage = 8;
+    productsPerPage = 5;
     selectedPage = 1;
 
     ngOnInit(): void {

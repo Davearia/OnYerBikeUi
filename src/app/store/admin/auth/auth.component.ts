@@ -4,7 +4,8 @@ import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 
 @Component({
-    templateUrl: "auth.component.html"
+    templateUrl: "auth.component.html",
+    styleUrls: ["auth.component.css"]
 })
 export class AuthComponent implements OnInit{
     username?: string;
