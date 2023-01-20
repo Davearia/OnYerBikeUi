@@ -4,8 +4,8 @@ import { Router } from "@angular/router";
 
 import { ProductService } from "src/app/services/product.service";
 import { StateService } from "src/app/services/state.service";
-import { Product } from "src/app/model/product.model";
-import { Cart } from "src/app/model/cart.model";
+import { Product } from "src/app/models/product.model";
+import { Cart } from "src/app/models/cart.model";
 
 @Component({
   selector: 'app-product-details',

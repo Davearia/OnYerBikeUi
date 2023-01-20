@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { AppConfig } from 'src/config/app-config';
+import { AppConfig } from "../app-components/app-config";
 
 @Injectable()
 export class AuthService {

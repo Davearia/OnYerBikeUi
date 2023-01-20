@@ -1,10 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { first, map, Observable } from "rxjs";
-import { Product } from "../model/product.model";
-import { ProductCategory } from "../model/ProductCategory.model";
-import { ProductSubCategory } from "../model/productSubCategory.model";
-import { AppConfig } from 'src/config/app-config';
+import { Product } from "../models/product.model";
+import { ProductCategory } from "../models/ProductCategory.model";
+import { ProductSubCategory } from "../models/productSubCategory.model";
+import { AppConfig } from "../app-components/app-config";
 
 @Injectable()
 export class ProductService {

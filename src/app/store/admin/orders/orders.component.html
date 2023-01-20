@@ -43,7 +43,7 @@
             [value]="ordersPerPage"
             (change)="changePageSize($any($event).target.value)"
           >
-            <option value="8">8 per Page</option>
+            <option value="4">4 per Page</option>
             <option value="15">15 per Page</option>
             <option value="20">20 per Page</option>
             <option value="25">25 per Page</option>
@@ -53,7 +53,7 @@
           <button
             *counter="let page of pageCount"
             (click)="changePage(page)"
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary button"
             [class.active]="page == selectedPage"
           >
             {{ page }}

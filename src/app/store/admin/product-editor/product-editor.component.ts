@@ -3,9 +3,9 @@ import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 
 import { ProductService } from "src/app/services/product.service";
-import { Product } from "src/app/model/product.model";
-import { ProductCategory } from "src/app/model/ProductCategory.model";
-import { ProductSubCategory } from "src/app/model/productSubCategory.model";
+import { Product } from "src/app/models/product.model";
+import { ProductCategory } from "src/app/models/ProductCategory.model";
+import { ProductSubCategory } from "src/app/models/productSubCategory.model";
 import { StateService } from "src/app/services/state.service";
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
-import { Order } from 'src/app/model/order.model';
-import { Cart } from 'src/app/model/cart.model';
-import { OrderDetail } from 'src/app/model/order-detail';
+import { Order } from 'src/app/models/order.model';
+import { Cart } from 'src/app/models/cart.model';
+import { OrderDetail } from 'src/app/models/order-detail';
 
 @Component({
   selector: 'app-order-view',
@@ -13,7 +13,7 @@ export class OrdersComponent implements OnInit {
 
   constructor(private orderService: OrderService) { }
 
-  ordersPerPage = 8;
+  ordersPerPage = 4;
   selectedPage = 1;
   inPreviewMode: boolean = false
   cart: Cart = new Cart;
