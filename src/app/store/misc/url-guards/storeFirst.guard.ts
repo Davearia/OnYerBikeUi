@@ -3,7 +3,7 @@ import {
     ActivatedRouteSnapshot, RouterStateSnapshot,
     Router
 } from "@angular/router";
-import { StoreComponent } from "../../store-components/store.component";
+import { StoreComponent } from "../../store/store.component";
 @Injectable()
 export class StoreFirstGuard {
     private firstNavigation = true;

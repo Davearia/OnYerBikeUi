@@ -1,0 +1,54 @@
+<admin-banner></admin-banner>
+<div class="container mat-elevation-z8">
+  <div class="search-container">
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        placeholder="Search..."
+        autocomplete="off"
+        (keyup)="filterData($event)"
+      />
+    </mat-form-field>
+  </div>
+  <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Forename</th>
+      <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Surname</th>
+      <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="emailAddress">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let element">{{ element.emailAddress }}</td>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Phone Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
+    </ng-container>
+    <ng-container matColumnDef="addressLine">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Address</th>
+      <td mat-cell *matCellDef="let element">{{ element.addressLine }}</td>
+    </ng-container>
+    <ng-container matColumnDef="city">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>City</th>
+      <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+    </ng-container>
+    <ng-container matColumnDef="postalCode">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>Post Code</th>
+      <td mat-cell *matCellDef="let element">{{ element.postalCode }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    #paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 50, 100]"
+  ></mat-paginator>
+</div>
+<div class="row d-flex justify-content-center p-2">
+  <button class="btn btn-primary m-1 button" routerLink="/admin">Back</button>
+</div>

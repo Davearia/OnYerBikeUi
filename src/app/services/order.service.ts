@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { first, map, Observable } from "rxjs";
 import { Order } from "../models/order.model";
-import { AppConfig } from "../app-components/app-config";
+import { AppConfig } from "../misc/app-config";
 import { Cart } from "../models/cart.model";
 import { OrderDetail } from "../models/order-detail";
 

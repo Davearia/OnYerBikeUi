@@ -1,16 +1,15 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-components/app-routing.module';
+import { AppRoutingModule } from './misc/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppConfig } from './app-components/app-config';
-import { AppComponent } from './app-components/app.component';
-import { StoreModule } from './store/store-components/store.module';
+import { AppConfig } from './misc/app-config';
+import { AppComponent } from './app/app.component';
+import { StoreModule } from './store/store.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { JsonAppConfigService } from './services/json-app-config.service';
 
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatButtonModule } from '@angular/material/button';
+import { MaterialModule } from './material.module';
 
 export function initializerFn(jsonAppConfigService : JsonAppConfigService){
   return () => {
@@ -28,8 +27,7 @@ export function initializerFn(jsonAppConfigService : JsonAppConfigService){
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatButtonModule  
+    MaterialModule
   ],
   providers: [
     {

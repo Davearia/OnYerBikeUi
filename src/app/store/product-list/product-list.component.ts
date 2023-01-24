@@ -7,7 +7,7 @@ import { ProductCategory } from "src/app/models/ProductCategory.model";
 import { ProductSubCategory } from "src/app/models/productSubCategory.model";
 import { StateService } from "src/app/services/state.service";
 import { Cart } from "src/app/models/cart.model";
-import { StoreComponent } from "../store-components/store.component";
+import { StoreComponent } from "../store/store.component";
 
 @Component({
     selector:'products',

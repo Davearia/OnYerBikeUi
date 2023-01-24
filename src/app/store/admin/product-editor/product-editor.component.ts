@@ -19,7 +19,7 @@ export class ProductEditorComponent implements OnInit {
     private state: StateService,
     private router: Router)
     {}
-
+   
     filteredProducts: Product[] = [];   
     filteredSubCategories: ProductSubCategory[] = [];   
     selectedCategory: string | undefined = 'All';

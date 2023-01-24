@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AppConfig } from '../app-components/app-config';
+import { AppConfig } from '../misc/app-config';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

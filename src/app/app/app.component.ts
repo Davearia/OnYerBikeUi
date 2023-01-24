@@ -1,5 +1,14 @@
 import { Component } from '@angular/core';
-import { AppConfig } from './app-config';
+import { AppConfig } from '../misc/app-config';
+import {Sort} from '@angular/material/sort';
+
+export interface Dessert {
+  calories: number;
+  carbs: number;
+  fat: number;
+  name: string;
+  protein: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -8,6 +17,7 @@ import { AppConfig } from './app-config';
 })
 export class AppComponent {
   title = 'On Yer Bike!';
+  startDate = new Date(1990, 0, 1);
 
   constructor(private appConfig: AppConfig){
     //console.log(appConfig.webApiRoot);

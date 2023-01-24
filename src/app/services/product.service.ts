@@ -4,7 +4,7 @@ import { first, map, Observable } from "rxjs";
 import { Product } from "../models/product.model";
 import { ProductCategory } from "../models/ProductCategory.model";
 import { ProductSubCategory } from "../models/productSubCategory.model";
-import { AppConfig } from "../app-components/app-config";
+import { AppConfig } from "../misc/app-config";
 
 @Injectable()
 export class ProductService {
