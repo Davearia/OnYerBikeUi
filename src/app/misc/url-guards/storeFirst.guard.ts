@@ -3,7 +3,7 @@ import {
     ActivatedRouteSnapshot, RouterStateSnapshot,
     Router
 } from "@angular/router";
-import { StoreComponent } from "../../store/store.component";
+import { BaseUiComponentComponent } from "src/app/store/base-ui-component/base-ui-component.component";
 @Injectable()
 export class StoreFirstGuard {
     private firstNavigation = true;
@@ -14,7 +14,7 @@ export class StoreFirstGuard {
         state: RouterStateSnapshot): boolean {
         if (this.firstNavigation) {
             this.firstNavigation = false;
-            if (route.component != StoreComponent) {
+            if (route.component != BaseUiComponentComponent) {
                 this.router.navigateByUrl("/");               
                 return false;
             }

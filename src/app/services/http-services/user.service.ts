@@ -1,18 +1,11 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { first, map, Observable } from "rxjs";
-import { User } from "../models/user.model";
-import { AppConfig } from "../misc/app-config";
+
+import { BaseService } from "./base.service";
+import { User } from "src/app/models/user.model";
 
 @Injectable()
-export class UseService {
-
-	constructor(private http: HttpClient,
-		private appConfig: AppConfig) {
-			this.apiRoot = appConfig.webApiRoot;
-		}
-
-	apiRoot: string | undefined;
+export class UserService extends BaseService {
 				
 	public users: User[] = [];
 

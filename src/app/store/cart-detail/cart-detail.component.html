@@ -1,4 +1,4 @@
-<store></store>
+<app-store-nav-header></app-store-nav-header>
 <div class="container-fluid">
   <div class="row">
     <div class="col mt-2">
@@ -30,10 +30,10 @@
             </td>
             <td>{{ line.product.name }}</td>
             <td class="text-end">
-              {{ line.product.listPrice | currency : 'GBP' : 'symbol' }}
+              {{ line.product.listPrice | currency : "GBP" : "symbol" }}
             </td>
             <td class="text-end">
-              {{ line.lineTotal | currency : 'GBP' : 'symbol' }}
+              {{ line.lineTotal | currency : "GBP" : "symbol" }}
             </td>
             <td class="text-center">
               <button
@@ -49,7 +49,7 @@
           <tr>
             <td colspan="3" class="text-end">Total:</td>
             <td class="text-end">
-              {{ cart.cartPrice | currency : 'GBP' : 'symbol' }}
+              {{ cart.cartPrice | currency : "GBP" : "symbol" }}
             </td>
           </tr>
         </tfoot>

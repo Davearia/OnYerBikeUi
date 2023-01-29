@@ -1,65 +1,67 @@
 <admin-banner></admin-banner>
 <div class="container-fluid">
   <div *ngIf="!inPreviewMode" class="row text-white">
-    <div class="col-2 p-2 text-dark">
-      <div>
-        <div
-          id="orders"
-          *ngFor="let order of orders"
-          class="card m-1 p-1 bg-light"
-        >
-          <div class="card-text bg-white p-1">
-            <label>Name:&nbsp;</label>{{ order.name }}
-          </div>
-          <div class="card-text bg-white p-1">
-            <label>Address:&nbsp;</label>{{ order.address }}
-          </div>
-          <div class="card-text bg-white p-1">
-            <label>Order Date:&nbsp;</label
-            >{{ order.orderDate | date : 'dd/MM/yyyy' }}
-          </div>
-          <div class="card-text bg-white p-1">
-            <label>Price:&nbsp;</label
-            >{{ order.orderPrice | currency : 'GBP' : 'symbol' }}
-          </div>
-          <div class="card-text bg-white p-1">
-            <label>Quantity:&nbsp;</label>{{ order.orderQuantity }}
-
+    <div class="container mat-elevation-z8">
+      <div class="search-container">
+        <mat-form-field appearance="fill" class="row text-black">
+          <input
+            matInput
+            placeholder="Search..."
+            autocomplete="off"
+            (keyup)="filterData($event)"
+          />
+        </mat-form-field>
+      </div>
+      <table
+        mat-table
+        matSort
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+      >
+        <ng-container matColumnDef="name">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="address">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Address</th>
+          <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+        </ng-container>
+        <ng-container matColumnDef="orderDate">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.orderDate }}</td>
+        </ng-container>
+        <ng-container matColumnDef="orderPrice">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let element">{{ element.orderPrice }}</td>
+        </ng-container>
+        <ng-container matColumnDef="orderQuantity">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.orderQuantity }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="details" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef aria-label="row actions">
+            &nbsp;
+          </th>
+          <td mat-cell *matCellDef="let element">
             <button
-              class="btn btn-success bg-dark btn-sm float-end"
-              (click)="viewOrderDetails(order)"
+              class="btn btn-success bg-success btn-sm float-end"
+              (click)="viewOrderDetails(element)"
             >
               Details
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div id="productsPerPage" class="form-inline float-start mr-1">
-          <select
-            class="form-control"
-            [value]="ordersPerPage"
-            (change)="changePageSize($any($event).target.value)"
-          >
-            <option value="4">4 per Page</option>
-            <option value="15">15 per Page</option>
-            <option value="20">20 per Page</option>
-            <option value="25">25 per Page</option>
-          </select>
-        </div>
-        <div id="pageButtons" class="btn-group">
-          <button
-            *counter="let page of pageCount"
-            (click)="changePage(page)"
-            class="btn btn-outline-primary button"
-            [class.active]="page == selectedPage"
-          >
-            {{ page }}
-          </button>
-        </div>
-      </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        #paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50, 100]"
+      ></mat-paginator>
     </div>
     <div class="row d-flex justify-content-center p-2">
       <button class="btn btn-primary m-1 button" routerLink="/admin">
@@ -95,11 +97,11 @@
           </div>
           <div class="card-text bg-white p-1">
             <label>Order Date:&nbsp;</label
-            >{{ selectedOrder.orderDate | date : 'dd/MM/yyyy' }}
+            >{{ selectedOrder.orderDate | date : "dd/MM/yyyy" }}
           </div>
           <div class="card-text bg-white p-1">
             <label>Price:&nbsp;</label
-            >{{ selectedOrder.orderPrice | currency : 'GBP' : 'symbol' }}
+            >{{ selectedOrder.orderPrice | currency : "GBP" : "symbol" }}
           </div>
           <div class="card-text bg-white p-1">
             <label>Quantity:&nbsp;</label>{{ selectedOrder.orderQuantity }}
@@ -123,7 +125,7 @@
           </div>
           <div class="card-text bg-white p-1">
             <label>Price:&nbsp;</label
-            >{{ orderDetail.price | currency : 'GBP' : 'symbol' }}
+            >{{ orderDetail.price | currency : "GBP" : "symbol" }}
           </div>
         </div>
       </div>

@@ -1,46 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from "@angular/router";
 
-import { ProductService } from "src/app/services/product.service";
-import { StateService } from "src/app/services/state.service";
-import { Product } from "src/app/models/product.model";
-import { Cart } from "src/app/models/cart.model";
+import { Product } from 'src/app/models/product.model';
+import { BaseUiComponentComponent } from '../base-ui-component/base-ui-component.component';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  styleUrls: ['./product-details.component.css'],
 })
-export class ProductDetailsComponent implements OnInit {
-           
-  constructor(private state: StateService,
-    private productService: ProductService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private cart: Cart) { 
-      
-    }
+export class ProductDetailsComponent
+  extends BaseUiComponentComponent
+  implements OnInit
+{
+  product: Product = new Product();
 
-    product: Product = new Product();
+  override ngOnInit() {
+    this.route.params.subscribe((params) =>
+      this.loadProduct(params['productId'])
+    );
+  }
 
-    ngOnInit() {
-      this.route.params.subscribe(params => this.loadProduct(params["productId"]));            
+  loadProduct(strProductId: string) {
+    if (Number(strProductId)) {
+      this.product = this.productService.getProductById(parseInt(strProductId));
     }
+  }
 
-    loadProduct(strProductId: string){
-      if(Number(strProductId)){
-        this.product = this.productService.getProductById(parseInt(strProductId));                  
-      }      
-    }
+  addToCart() {
+    console.log(this.product);
+    this.cart.addLine(this.product);
+    this.router.navigate(['product-list']);
+  }
 
-    addToCart(){
-        console.log(this.product);
-        this.cart.addLine(this.product);
-        this.router.navigate(["product-list"]);
-    }
-
-    returnToProducts(){     
-      this.router.navigate(["product-list"]);
-    }
+  returnToProducts() {
+    this.router.navigate(['product-list']);
+  }
 }
