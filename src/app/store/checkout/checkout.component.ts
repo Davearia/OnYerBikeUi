@@ -1,33 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { Order } from 'src/app/models/order.model';
-import { OrderService } from 'src/app/services/order.service';
+import { NgForm } from '@angular/forms';
+import { BaseUiComponentComponent } from '../base-ui-component/base-ui-component.component';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent
+  extends BaseUiComponentComponent
+  implements OnInit
+{
   orderSent: boolean = false;
   submitted: boolean = false;
 
-  constructor(public order: Order, private orderService: OrderService) { }
-
-  ngOnInit(): void {
-  }
+  override ngOnInit(): void {}
 
   submitOrder(form: NgForm) {
     this.submitted = true;
     if (form.valid) {
-     
-        this.orderService.saveOrder(this.order).subscribe(order =>{
-          this.order.clear();
-          this.orderSent = true;
-          this.submitted = false;
-        });        
+      this.orderService.saveOrder(this.order).subscribe((order) => {
+        this.order.clear();
+        this.orderSent = true;
+        this.submitted = false;
+      });
     }
-    
   }
-
 }

@@ -1,62 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import { OrderService } from 'src/app/services/order.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { BaseUiComponentComponent } from '../../base-ui-component/base-ui-component.component';
 import { Order } from 'src/app/models/order.model';
-import { Cart } from 'src/app/models/cart.model';
 import { OrderDetail } from 'src/app/models/order-detail';
 
 @Component({
   selector: 'app-order-view',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  styleUrls: ['./orders.component.css'],
 })
-export class OrdersComponent implements OnInit {
-
-  constructor(private orderService: OrderService) { }
-
+export class OrdersComponent
+  extends BaseUiComponentComponent
+  implements OnInit
+{
   ordersPerPage = 4;
   selectedPage = 1;
-  inPreviewMode: boolean = false
-  cart: Cart = new Cart;
+  inPreviewMode: boolean = false;
   selectedOrder: Order = new Order(this.cart);
   orderDetails: OrderDetail[] = [];
+  displayedColumns: string[] = [
+    'name',
+    'address',
+    'orderDate',
+    'orderPrice',
+    'orderQuantity',
+    'details',
+  ];
+  dataSource!: MatTableDataSource<Order>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) matSort!: MatSort;
 
-  ngOnInit(): void {
-    this.orderService.loadOrders()
-        .subscribe();
+  override ngOnInit(): void {
+    this.orderService.loadOrders().subscribe((orders) => {
+      this.dataSource = new MatTableDataSource<Order>(orders);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.matSort;
+    });
   }
 
-  get orders(): Order[] {       
-    let pageIndex = (this.selectedPage - 1) * this.ordersPerPage   
-    return this.orderService.getOrders()       
-        .slice(pageIndex, pageIndex + this.ordersPerPage);
+  filterData($event: any) {
+    this.dataSource.filter = $event.target.value;
   }
 
-changePage(newPage: number) {
-    this.selectedPage = newPage;
-}
-
-changePageSize(newSize: number) {
-    this.ordersPerPage = Number(newSize);
-    this.changePage(1);
-}
-
-get pageCount(): number {       
-    return Math.ceil(this.orderService.orders.length / this.ordersPerPage);
-} 
-
-viewOrderDetails(order: Order){
-  if(order != null){
-    this.selectedOrder = order;
-
-    this.orderService.loadOrderDetails(this.selectedOrder.orderId).subscribe(orderDetails =>{
-      this.orderDetails = orderDetails;
-      this.inPreviewMode = true; 
-    });       
+  viewOrderDetails(order: Order) {
+    if (order != null) {
+      this.selectedOrder = order;
+      this.orderService
+        .loadOrderDetails(this.selectedOrder.orderId)
+        .subscribe((orderDetails) => {
+          this.orderDetails = orderDetails;
+          this.inPreviewMode = true;
+        });
+    }
   }
-}
 
-closeOrderDetails(){
-  this.inPreviewMode = false; 
-}
-
+  closeOrderDetails() {
+    this.inPreviewMode = false;
+  }
 }

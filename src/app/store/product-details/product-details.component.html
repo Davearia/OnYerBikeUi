@@ -1,4 +1,4 @@
-<store></store>
+<app-store-nav-header></app-store-nav-header>
 <div class="card">
   <img
     src="data:image/png;base64,{{ product.largePhoto }}"
@@ -6,7 +6,7 @@
   />
   <h3>{{ product.name }}</h3>
   <p>{{ product.description }}</p>
-  <p class="price">{{ product.listPrice | currency : 'GBP' : 'symbol' }}</p>
+  <p class="price">{{ product.listPrice | currency : "GBP" : "symbol" }}</p>
   <p><button class="bg-dark" (click)="addToCart()">Add to Cart</button></p>
   <p><button class="bg-primary" routerLink="/product-list">Back</button></p>
 </div>

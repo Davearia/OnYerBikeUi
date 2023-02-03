@@ -1,11 +1,9 @@
+import { Injectable } from "@angular/core";
+
+@Injectable()
 export class ProductCategory{
     
-    constructor(
-        public productCategoryId?: number,
-        public name: string = "",       
-    )
-    {
-
-    }
-
+    public productCategoryId?: number;
+    public name: string = "";  
+ 
 }

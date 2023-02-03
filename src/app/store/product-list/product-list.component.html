@@ -1,17 +1,17 @@
-<store></store>
+<app-store-nav-header></app-store-nav-header>
 <div class="container-fluid">
   <div class="row text-white">
     <div class="col-10 p-2 text-dark">
       <div>
         <div
           id="products"
-          *ngFor="let product of products"
+          *ngFor="let product of getProducts"
           class="card m-1 p-1 bg-light"
         >
           <h4>
             {{ product.name }}
             <span class="badge rounded-pill bg-primary" style="float: right">
-              {{ product.listPrice | currency : 'GBP' : 'symbol' }}
+              {{ product.listPrice | currency : "GBP" : "symbol" }}
             </span>
           </h4>
           <div class="card-text bg-white p-1">

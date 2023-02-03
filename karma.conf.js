@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/on-yer-bike-ui'),
+      dir: require('path').join(__dirname, './coverage/on-yer-bike-ui-v2'),
       subdir: '.',
       reporters: [
         { type: 'html' },

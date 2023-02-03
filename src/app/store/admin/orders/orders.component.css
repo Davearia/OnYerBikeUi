@@ -2,5 +2,18 @@
     margin-left: 10px;
 }
 .button{
-    border-radius: 0;
+    border-radius: 50;
+margin-top: 10px;
+}
+
+table {
+    width: 100%;
+  }
+
+.mat-row:nth-child(even){
+    background-color:whitesmoke;
+}
+        
+.mat-row:nth-child(odd){
+    background-color: white;
 }
