@@ -1,7 +1,11 @@
 // Angular modules
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
@@ -36,6 +40,8 @@ import { AdminComponent } from './store/admin/admin/admin.component';
 import { ProductEditorComponent } from './store/admin/product-editor/product-editor.component';
 import { UserComponent } from './store/admin/user/user.component';
 import { LoginComponent } from './store/login/login.component';
+import { ErrorInterceptor } from './misc/interceptors/error.interceptor';
+import { TokenInterceptor } from './misc/interceptors/token-interceptor';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -85,6 +91,16 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
       multi: true,
       deps: [JsonAppConfigService],
       useFactory: initializerFn,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
     },
     StoreFirstGuard,
     AuthGuard,

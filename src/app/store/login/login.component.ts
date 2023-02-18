@@ -20,7 +20,7 @@ export class LoginComponent extends BaseUiComponentComponent {
         .authenticate(this.username, this.password)
         .subscribe((response) => {
           if (response.toString().length > 0) {
-            this.state.Token = response;
+            this.state.Token = response.valueOf();
             this.router.navigateByUrl('/product-list');
           } else {
             this.errorMessage = 'Authentication Failed';
